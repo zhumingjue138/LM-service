@@ -98,9 +98,9 @@ def create_result_plot(result_file_names,
                         f'{yi:.2f}',
                         (xi, yi),
                         textcoords="offset points",
-                        xytext=(0, 10),  # 在点上方10像素显示
-                        ha='center',  # 水平居中
-                        va='bottom',  # 垂直底部对齐
+                        xytext=(0, 10),  # Display 10 pixels above the point
+                        ha='center',  # Horizontal center
+                        va='bottom',  # Vertical bottom alignment
                         fontsize=8,
                         color='black')
 
@@ -120,9 +120,9 @@ def create_result_plot(result_file_names,
                     f'{yi:.2f}',
                     (xi, yi),
                     textcoords="offset points",
-                    xytext=(0, 10),  # 在点上方10像素显示
-                    ha='center',  # 水平居中
-                    va='bottom',  # 垂直底部对齐
+                    xytext=(0, 10),  # Display 10 pixels above the point
+                    ha='center',  # Horizontal center
+                    va='bottom',  # Vertical bottom alignment
                     fontsize=8,
                     color='black')
 
@@ -172,13 +172,13 @@ def create_ttft_plot(result_file_names,
     }
 
     try:
-        # 读取所有数据并合并
+        # Read all data and merge
         all_data = []
         for file_name in result_file_names:
             file_data = pd.read_csv(f"./{file_name}.csv")
             file_data['source_file'] = file_name
 
-            # 计算各项指标
+            # Calculate metrics
             pd_queue_columns = [
                 col for col in file_data.columns
                 if 'PD' in col and 'queue' in col
@@ -224,30 +224,30 @@ def create_ttft_plot(result_file_names,
 
             all_data.append(file_data)
 
-        # 合并所有数据
+        # Merge all data
         combined_data = pd.concat(all_data, ignore_index=True)
 
-        # 获取所有唯一的 index 值
+        # Get all unique index values
         unique_indices = combined_data['index'].unique()
 
-        # 创建子图布局
+        # Create subplot layout
         n_indices = len(unique_indices)
         fig, axes = plt.subplots(n_indices, 1, figsize=(20, 6 * n_indices))
         if n_indices == 1:
-            axes = [axes]  # 确保 axes 是列表形式
+            axes = [axes]  # Ensure axes is a list
 
-        bar_width = 0.15  # 调整宽度以适应多个文件
+        bar_width = 0.15  # Adjust width to accommodate multiple files
 
         for idx_idx, index_val in enumerate(unique_indices):
             ax = axes[idx_idx]
 
-            # 筛选当前 index 的数据
+            # Filter data for current index
             index_data = combined_data[combined_data['index'] == index_val]
 
             x_pos = np.arange(len(index_data))
             bottom = np.zeros(len(index_data))
 
-            # 为每个文件绘制堆叠柱状图
+            # Draw stacked bar chart for each file
             for metrics_name in metrics_names:
                 bars = ax.bar(x_pos,
                               index_data[metrics_name],
@@ -259,12 +259,12 @@ def create_ttft_plot(result_file_names,
                               alpha=0.7,
                               linewidth=0.8)
 
-                # 添加数值标签
+                # Add value labels
                 for value, bar, single_bottom in zip(index_data[metrics_name],
                                                      bars, bottom):
-                    if value > 0:  # 只显示大于0的值
+                    if value > 0:  # Only display values greater than 0
                         ax.text(bar.get_x() + bar.get_width() / 2,
-                                single_bottom + value / 2,  # 在柱状图中间显示
+                                single_bottom + value / 2,  # Display in the middle of the bar
                                 f'{value:.1f}',
                                 ha='center',
                                 va='center',
@@ -273,7 +273,7 @@ def create_ttft_plot(result_file_names,
                                 color='black')
                 bottom += np.array(index_data[metrics_name])
 
-            # 设置 x 轴标签
+            # Set x-axis labels
             file_labels = [f"{row['source_file']}" for _, row in index_data.iterrows()]
             ax.set_xticks(x_pos)
             ax.set_xticklabels(file_labels, rotation=45)
@@ -288,11 +288,11 @@ def create_ttft_plot(result_file_names,
             ]
             ax.legend(handles=legend_elements, loc='upper right')
 
-        # 设置整个图的标题和布局
+        # Set title and layout for the entire figure
         plt.suptitle('TTFT Breakdown Analysis', fontsize=16, fontweight='bold')
-        plt.tight_layout(rect=[0, 0, 1, 0.96])  # 为总标题留出空间
+        plt.tight_layout(rect=[0, 0, 1, 0.96])  # Reserve space for the main title
 
-        # 保存图片
+        # Save the figure
         if len(result_file_names) == 1:
             plt.savefig(f'./{result_file_names[0]}.png',
                         dpi=200,

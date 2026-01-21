@@ -5,7 +5,6 @@ import pytest_asyncio
 import copy
 import socket
 
-from tests.e2e.conftest import RemoteOpenAIServer
 from tests.e2e.conftest import RemoteEPDServer
 from tests.e2e.epd.conftest import load_config
 from tools.aisbench import run_aisbench_cases
@@ -20,7 +19,6 @@ DATASET_PATH = load_config().get("dataset_path")
 SHARED_STORAGE_PATH = "/dev/shm/epd/storage"
 
 TENSOR_PARALLELS = [1]
-DATASET_NAME = ["simulate_truth"]
 
 PREFIX_CACHE = [True, False]
 
@@ -53,15 +51,12 @@ async def test_proxy1e1pd_mooncake_ipc_001(model: str, tp_size: int, dataset: st
     env_dict = EnvManager()
     env_dict.add_env("common", env_dict=env)
 
-
     for i in range(e_num):
         env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", str(i), index=i)
     for i in range(pd_num):
         env_dict.add_env("pd", "ASCEND_RT_VISIBLE_DEVICES", str(i + e_num), index=i)
 
-
-    
-    pd_server_args = list()
+    pd_server_args = []
 
     rpc_port = get_open_port()
     http_metadata_server_port = get_open_port()
@@ -97,7 +92,6 @@ async def test_proxy1e1pd_mooncake_ipc_001(model: str, tp_size: int, dataset: st
     ]
     for _ in range(pd_num):
         pd_server_args.append(pd_arg)
-
 
     mooncake_args = [
             "--rpc_port", str(rpc_port), "--rpc_address", f"{mooncake_ip}", "--enable_http_metadata_server=true",
@@ -185,11 +179,11 @@ DATASET_NAME = ["simulate_truth"]
 @pytest.mark.parametrize("dataset", DATASET_NAME)
 async def test_proxy2e3p3d_mooncake_tcp_ipv6_001(model: str, tp_size: int, dataset: str, request_rate: float):
     '''
-    P2E3P3D, 单机部署
-    前缀缓存： 开启
-    数据集：模拟ZJ
+    2E3P3D, single-node deployment
+    Prefix cache: enabled
+    Dataset: simulate_truth
     ec transfer: mooncake
-    通信方式: ipv6
+    Communication method: ipv6
     '''
 
     e_num = 2
@@ -205,7 +199,6 @@ async def test_proxy2e3p3d_mooncake_tcp_ipv6_001(model: str, tp_size: int, datas
     }
     env_dict = EnvManager()
     env_dict.add_env("common", env_dict=env)
-
 
     rpc_port = get_open_port()
     http_metadata_server_port = get_open_port()
@@ -233,7 +226,7 @@ async def test_proxy2e3p3d_mooncake_tcp_ipv6_001(model: str, tp_size: int, datas
         '"fast_transfer_buffer_size": 1, "ec_max_num_scheduled_tokens": "1000000000000000000"},'
         '"ec_connector":"ECMooncakeStorageConnector","ec_role": "ec_producer"}'
     ]
-    pd_server_args = list()
+    pd_server_args = []
 
     p_arg = [
         "--model", model, "--gpu-memory-utilization", "0.95",

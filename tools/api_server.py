@@ -34,7 +34,7 @@ image = convert_image_mode(Image.open(IMAGE_PATH), "RGB")
 IMAGE_ARRAY = np.array(image)
 
 
-# 注册路由
+# Register routes
 @app.post("/v1/chat/completions")
 async def chat_completions(request: Request):
     try:
@@ -200,7 +200,7 @@ async def chat_completions(request: Request):
 
 @app.get("/health")
 async def health_check():
-    """健康检查接口"""
+    """Health check endpoint"""
     return {"status": "healthy", "timestamp": asyncio.get_event_loop().time()}
 
 
