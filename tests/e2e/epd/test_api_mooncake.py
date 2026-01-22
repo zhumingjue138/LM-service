@@ -354,7 +354,7 @@ async def test_proxy2e3p3d_mooncake_tcp_ipv6_001(model: str, tp_size: int, datas
     http_metadata_server_port = get_open_port()
     metrics_port = get_open_port()
 
-    mooncake_ip = "0.0.0.0"
+    mooncake_ip = "::1"
 
     for i in range(e_num):
         env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", str(i), index=i)
@@ -370,9 +370,9 @@ async def test_proxy2e3p3d_mooncake_tcp_ipv6_001(model: str, tp_size: int, datas
         "--max-model-len", "20000", "--max-num-batched-tokens", "10000",
         "--max-num-seqs", "1", "--ec-transfer-config",
         f'{{"ec_connector_extra_config":{{"local_hostname":"{mooncake_ip}",'
-        f'"metadata_server": "http://{mooncake_ip}:{http_metadata_server_port}/metadata","global_segment_size": 32212254720, '
+        f'"metadata_server": "http://[{mooncake_ip}]:{http_metadata_server_port}/metadata","global_segment_size": 32212254720, '
         '"local_buffer_size": 1073741824, "protocol": "tcp","transfer_timeout":"20", "device_name": "",'
-        f'"master_server_address": "{mooncake_ip}:{rpc_port}","replica_num": 1, "fast_transfer":true, '
+        f'"master_server_address": "[{mooncake_ip}]:{rpc_port}","replica_num": 1, "fast_transfer":true, '
         '"fast_transfer_buffer_size": 1, "ec_max_num_scheduled_tokens": "1000000000000000000"},'
         '"ec_connector":"ECMooncakeStorageConnector","ec_role": "ec_producer"}'
     ]
@@ -385,15 +385,15 @@ async def test_proxy2e3p3d_mooncake_tcp_ipv6_001(model: str, tp_size: int, datas
         "--max-num-batched-tokens", "10000", "--max-num-seqs", "128",
         "--ec-transfer-config",
         f'{{"ec_connector_extra_config":{{"local_hostname":"{mooncake_ip}",'
-        f'"metadata_server": "http://{mooncake_ip}:{http_metadata_server_port}/metadata","global_segment_size": 0, '
+        f'"metadata_server": "http://[{mooncake_ip}]:{http_metadata_server_port}/metadata","global_segment_size": 0, '
         '"local_buffer_size": 1073741824, "protocol": "tcp","transfer_timeout":"20", "device_name": "",'
-        f'"master_server_address": "{mooncake_ip}:{rpc_port}","replica_num": 1, "fast_transfer":true, '
+        f'"master_server_address": "[{mooncake_ip}]:{rpc_port}","replica_num": 1, "fast_transfer":true, '
         '"fast_transfer_buffer_size": 1},'
         '"ec_connector":"ECMooncakeStorageConnector","ec_role": "ec_consumer"}',
         "--kv-transfer-config",
         f'{{"kv_connector_extra_config": {{"local_hostname": "{mooncake_ip}", '
-        f'"metadata_server": "http://{mooncake_ip}:{http_metadata_server_port}/metadata","protocol": "tcp", '
-        f'"device_name": "", "master_server_address": "{mooncake_ip}:{rpc_port}", '
+        f'"metadata_server": "http://[{mooncake_ip}]:{http_metadata_server_port}/metadata","protocol": "tcp", '
+        f'"device_name": "", "master_server_address": "[{mooncake_ip}]:{rpc_port}", '
         '"global_segment_size": 30000000000},"kv_connector": "MooncakeConnectorStoreV1", '
         f'"kv_role": "kv_producer", "mooncake_rpc_port": "0"}}'
     ]
@@ -404,8 +404,8 @@ async def test_proxy2e3p3d_mooncake_tcp_ipv6_001(model: str, tp_size: int, datas
         "--max-num-batched-tokens", "10000", "--max-num-seqs", "128",
         "--kv-transfer-config",
         f'{{"kv_connector_extra_config": {{"local_hostname": "{mooncake_ip}", '
-        f'"metadata_server": "http://{mooncake_ip}:{http_metadata_server_port}/metadata","protocol": "tcp", '
-        f'"device_name": "", "master_server_address": "{mooncake_ip}:{rpc_port}", '
+        f'"metadata_server": "http://[{mooncake_ip}]:{http_metadata_server_port}/metadata","protocol": "tcp", '
+        f'"device_name": "", "master_server_address": "[{mooncake_ip}]:{rpc_port}", '
         '"global_segment_size": 30000000000},"kv_connector": "MooncakeConnectorStoreV1", '
         f'"kv_role": "kv_consumer", "mooncake_rpc_port": "0"}}'
         ]
@@ -415,8 +415,8 @@ async def test_proxy2e3p3d_mooncake_tcp_ipv6_001(model: str, tp_size: int, datas
         pd_server_args.append(d_arg)
 
     mooncake_args = [
-        "--rpc_port", str(rpc_port), "--rpc_address", f"{mooncake_ip}", "--enable_http_metadata_server=true",
-        f"--http_metadata_server_host={mooncake_ip}",
+        "--rpc_port", str(rpc_port), "--rpc_address", f"{::}", "--enable_http_metadata_server=true",
+        f"--http_metadata_server_host=::",
         f"--http_metadata_server_port={http_metadata_server_port}", "--rpc_thread_num", "8",
         "--default_kv_lease_ttl", "10000", "--eviction_ratio", "0.05",
         "--eviction_high_watermark_ratio", "0.9", "--metrics_port", str(metrics_port)
