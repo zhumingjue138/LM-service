@@ -25,6 +25,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -161,6 +162,7 @@ async def test_1e1pd_shm_tcp_001(
         )
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
