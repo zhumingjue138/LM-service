@@ -35,7 +35,6 @@ from transformers import (
 # we not explicitly patch here, some of them might be effectiveless
 # in pytest scenario
 
-from vllm.utils import get_open_port
 
 from vllm.distributed.parallel_state import (  # noqa E402
     destroy_distributed_environment,
@@ -537,6 +536,8 @@ class RemoteEPDServer:
             )
 
     def _start_etcd(self) -> None:
+        from vllm.utils import get_open_port
+
         etcd_client_port = get_open_port()
         etcd_peer_port = get_open_port()
         host = self.cluster_ips[0]
@@ -590,6 +591,8 @@ class RemoteEPDServer:
         )
 
     def _start_datasystem(self) -> None:
+        from vllm.utils import get_open_port
+
         self.env_dict.add_env("common", "EC_STORE_TYPE", "datasystem")
         self.env_dict.add_env("common", "USING_PREFIX_CONNECTOR", "0")
         self.datasystem_port = get_open_port()
@@ -680,6 +683,8 @@ class RemoteEPDServer:
                 )
 
     def _get_addr_config(self, args, i, role):
+        from vllm.utils import get_open_port
+
         if (
             common_env := self.env_dict.get_node_env("common", 0)
         ) and common_env.get("TRANSFER_PROTOCOL") is not None:
@@ -996,6 +1001,8 @@ class RemoteEPDServer:
         return p
 
     def _start_vllm_serve(self):
+        from vllm.utils import get_open_port
+
         self.env_dict.add_env("common", "VLLM_ALLOW_LONG_MAX_MODEL_LEN", "1")
         self.env_dict.add_env("common", "VLLM_USE_V1", "1")
         self.env_dict.add_env(
@@ -1193,6 +1200,8 @@ class RemoteEPDServer:
             raise ValueError("kv store type must be mooncake")
         if proxy_type is not None and proxy_type not in ["proxy", "api_server"]:
             raise ValueError("proxy type must be proxy or api_server")
+        from vllm.utils import get_open_port
+
         self.run_mode = run_mode
         self.store_type = store_type
         self.protocol = ""
