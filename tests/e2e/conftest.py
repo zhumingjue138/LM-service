@@ -1629,8 +1629,6 @@ class RemoteOpenAIServer:
         )
 
 
-
-
 @pytest.fixture(scope="session")
 def ilama_lora_files():
     return snapshot_download(repo_id="vllm-ascend/ilama-text2sql-spider")
