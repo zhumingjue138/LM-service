@@ -29,11 +29,9 @@ from lm_service.routing_logic import (
 from vllm.multimodal.image import convert_image_mode
 from vllm.sampling_params import SamplingParams
 
-from pathlib import Path
 from contextlib import asynccontextmanager
 
 app = FastAPI()
-
 
 
 # Register routes
@@ -64,7 +62,6 @@ async def chat_completions(request: Request):
             image = convert_image_mode(Image.open(image_buffer), "RGB")
             binary_data = np.array(image)
             binary_list.append(binary_data)
-
 
         if "qwen" in app.state.proxy.model_config.model.lower():
             image_pad = "<|image_pad|>"
