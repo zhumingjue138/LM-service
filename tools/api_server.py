@@ -34,9 +34,6 @@ from contextlib import asynccontextmanager
 
 app = FastAPI()
 
-IMAGE_PATH = Path(__file__).parent / "224.png"
-image = convert_image_mode(Image.open(IMAGE_PATH), "RGB")
-IMAGE_ARRAY = np.array(image)
 
 
 # Register routes
@@ -58,21 +55,16 @@ async def chat_completions(request: Request):
         binary_list = []
         image_num = len(prompt) - 1
         # load image and base64 decode
-        if app.state.is_load_image:
-            for i in range(image_num):
-                image_base64 = (
-                    prompt[i].get("image_url", "").get("url", "").split(",")[-1]
-                )
-                image_data = base64.b64decode(image_base64.encode("utf-8"))
-                image_buffer = BytesIO(image_data)
-                image = convert_image_mode(Image.open(image_buffer), "RGB")
-                binary_data = np.array(image)
-                binary_list.append(binary_data)
+        for i in range(image_num):
+            image_base64 = (
+                prompt[i].get("image_url", "").get("url", "").split(",")[-1]
+            )
+            image_data = base64.b64decode(image_base64.encode("utf-8"))
+            image_buffer = BytesIO(image_data)
+            image = convert_image_mode(Image.open(image_buffer), "RGB")
+            binary_data = np.array(image)
+            binary_list.append(binary_data)
 
-        ## the np of image
-        else:
-            for _ in range(image_num):
-                binary_list.append(IMAGE_ARRAY)
 
         if "qwen" in app.state.proxy.model_config.model.lower():
             image_pad = "<|image_pad|>"
@@ -228,9 +220,6 @@ if __name__ == "__main__":
     )
     parser.add_argument("--port", type=int, default=8000, help="Proxy port")
     parser.add_argument(
-        "--is-load-image", action="store_true", help="load image from path"
-    )
-    parser.add_argument(
         "--proxy-config", type=str, help="proxy configuration as JSON"
     )
 
@@ -242,5 +231,4 @@ if __name__ == "__main__":
         proxy_config_dict["router"] = RoundRobinRouter
     elif proxy_config_dict.get("router", "test") == "LeastInFlightRouter":
         proxy_config_dict["router"] = LeastInFlightRouter
-    app.state.is_load_image = args.is_load_image
     uvloop.run(run_server_worker(proxy_config_dict, args.host, args.port))

@@ -534,8 +534,6 @@ class RemoteEPDServer:
             "--proxy-config",
             json.dumps(self.proxy_config),
         ]
-        if self.is_image_load:
-            api_server_args.append("--is-load-image")
 
         print(f"proxy params is: {api_server_args}")
         api_server_path = (
@@ -1209,7 +1207,6 @@ class RemoteEPDServer:
         proxy_args: Union[list[str], str] = None,
         node_info: ClusterManager = None,
         api_server_port: Optional[int] = 10001,
-        is_image_load: Optional[bool] = True,
         env_dict: EnvManager = None,
     ) -> None:
         self._share_info = SharedInfoManager()
@@ -1232,7 +1229,6 @@ class RemoteEPDServer:
         self.protocol = ""
         self.kv_store_type = kv_store_type
         self.proxy_type = proxy_type
-        self.is_image_load = is_image_load
         self.api_server_port = api_server_port
         self.e_serve_args_list = list()
         self.pd_serve_args_list = list()
