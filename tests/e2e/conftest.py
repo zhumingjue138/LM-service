@@ -30,18 +30,10 @@ from PIL import Image
 from modelscope import snapshot_download  # type: ignore[import-untyped]
 from torch import nn
 from transformers import (
-    AutoConfig,
-    AutoModelForCausalLM,
-    AutoTokenizer,
     BatchEncoding,
     BatchFeature,
 )
-from transformers.models.auto.auto_factory import _BaseAutoModelClass
 
-from tests.e2e.model_utils import (
-    TokensTextLogprobs,
-    TokensTextLogprobsPromptLogprobs,
-)
 from tests.e2e.nightly.multi_node.config.multi_node_config import NodeInfo
 from tests.e2e.nightly.multi_node.config.multi_node_epd_config import (
     ClusterManager,
