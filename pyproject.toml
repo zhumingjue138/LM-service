@@ -30,6 +30,9 @@ develop = [
     "httpx",
     "pandas",
     "openai",
+    "psutil",
+    "pytest",
+    "request",
     "coverage[toml]>=7.0",
 ]
 
