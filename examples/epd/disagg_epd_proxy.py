@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Copyright contributors to the LM-Service project
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
 """
 disagg_encoder_proxy.py
@@ -153,7 +154,9 @@ async def fanout_encoder_primer(
             )
 
     logger.info(
-        "[%s] All %d encoder requests completed successfully", req_id, len(mm_items)
+        "[%s] All %d encoder requests completed successfully",
+        req_id,
+        len(mm_items),
     )
 
 
@@ -209,7 +212,9 @@ async def process_prefill_stage(
     headers = {"x-request-id": req_id}
     try:
         prefill_response = await prefill_session.post(
-            f"{p_url}/v1/chat/completions", json=prefill_request, headers=headers
+            f"{p_url}/v1/chat/completions",
+            json=prefill_request,
+            headers=headers,
         )
         prefill_response.raise_for_status()
 
@@ -223,7 +228,10 @@ async def process_prefill_stage(
             )
             raise HTTPException(
                 status_code=prefill_response.status,
-                detail={"error": "Prefill request failed", "message": error_text},
+                detail={
+                    "error": "Prefill request failed",
+                    "message": error_text,
+                },
             )
         logger.info("[%s] Prefill request completed successfully", req_id)
 
@@ -291,11 +299,15 @@ async def log_requests(request: Request, call_next):
 async def on_startup() -> None:
     global encode_session, prefill_session, decode_session
     timeout = aiohttp.ClientTimeout(total=100_000)
-    connector = aiohttp.TCPConnector(limit=0, force_close=False, keepalive_timeout=0)
+    connector = aiohttp.TCPConnector(
+        limit=0, force_close=False, keepalive_timeout=0
+    )
     encode_session = aiohttp.ClientSession(timeout=timeout, connector=connector)
     if app.state.p_urls:
         # only setup if prefill instance(s) exist
-        prefill_session = aiohttp.ClientSession(timeout=timeout, connector=connector)
+        prefill_session = aiohttp.ClientSession(
+            timeout=timeout, connector=connector
+        )
     decode_session = aiohttp.ClientSession(timeout=timeout, connector=connector)
 
 
@@ -349,10 +361,14 @@ async def forward_non_stream(
         raise
     except Exception as e:
         logger.exception("[%s] Error in forward_non_stream: %s", req_id, str(e))
-        raise HTTPException(status_code=500, detail=f"Proxy error: {str(e)}") from e
+        raise HTTPException(
+            status_code=500, detail=f"Proxy error: {str(e)}"
+        ) from e
 
 
-async def stream_retry_wrap(forward_func, max_retries: int = 3, delay: float = 0.1):
+async def stream_retry_wrap(
+    forward_func, max_retries: int = 3, delay: float = 0.1
+):
     last_exc = None
     first_chunk_sent = False
     for attempt in range(max_retries):
@@ -416,7 +432,9 @@ async def forward_stream(
 
         async def run_decode_stream():
             # Step 3: Process through Decode instance
-            logger.info("[%s] Starting streaming from decode: %s", req_id, d_url)
+            logger.info(
+                "[%s] Starting streaming from decode: %s", req_id, d_url
+            )
             headers = {"x-request-id": req_id}
 
             # Streaming response
@@ -467,7 +485,9 @@ async def chat_completions(request: Request):
                 forward_stream(req_data, req_id, e_urls, p_url, d_url),
                 media_type="text/event-stream",
             )
-        result = await forward_non_stream(req_data, req_id, e_urls, p_url, d_url)
+        result = await forward_non_stream(
+            req_data, req_id, e_urls, p_url, d_url
+        )
         return JSONResponse(content=result)
 
     except HTTPException:
@@ -500,7 +520,9 @@ async def health_check():
         return "healthy"
 
     e_status, p_status, d_status = await asyncio.gather(
-        healthy(app.state.e_urls), healthy(app.state.p_urls), healthy(app.state.d_urls)
+        healthy(app.state.e_urls),
+        healthy(app.state.p_urls),
+        healthy(app.state.d_urls),
     )
 
     overall_healthy = all(
@@ -558,7 +580,9 @@ async def _post_if_available(
         raise
 
 
-async def _profile_cmd(cmd: str, payload: dict, e_url: str, p_url: str, d_url: str):
+async def _profile_cmd(
+    cmd: str, payload: dict, e_url: str, p_url: str, d_url: str
+):
     """
     Fire & forget to both clusters, tolerate 404.
     """
@@ -568,7 +592,9 @@ async def _profile_cmd(cmd: str, payload: dict, e_url: str, p_url: str, d_url: s
         encode_session, f"{e_url}/{cmd}_profile", payload, headers
     )
     prefill_task = (
-        _post_if_available(prefill_session, f"{p_url}/{cmd}_profile", payload, headers)
+        _post_if_available(
+            prefill_session, f"{p_url}/{cmd}_profile", payload, headers
+        )
         if p_url is not None
         else asyncio.sleep(0)
     )
@@ -654,7 +680,9 @@ if __name__ == "__main__":
         app.state.p_urls = [
             u.strip() for u in args.prefill_servers_urls.split(",") if u.strip()
         ]
-        logger.info("Disaggregated prefill phase is enabled. Running E + P + D...")
+        logger.info(
+            "Disaggregated prefill phase is enabled. Running E + P + D..."
+        )
 
     logger.info("Proxy listening on %s:%s", args.host, args.port)
     logger.info("Encode servers: %s", app.state.e_urls)

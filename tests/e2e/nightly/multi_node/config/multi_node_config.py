@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Copyright contributors to the LM-Service project
 import logging
 import os
 import subprocess
@@ -7,15 +9,19 @@ from typing import Optional
 import regex as re
 import yaml
 
-from tests.e2e.nightly.multi_node.config.utils import (get_avaliable_port,
-                                                       get_cluster_ips,
-                                                       get_cur_ip,
-                                                       get_net_interface,
-                                                       setup_logger)
+from tests.e2e.nightly.multi_node.config.utils import (
+    get_avaliable_port,
+    get_cluster_ips,
+    get_cur_ip,
+    get_net_interface,
+    setup_logger,
+)
 
 setup_logger()
 logger = logging.getLogger(__name__)
-DISAGGREGATED_PREFILL_PROXY_SCRIPT = "examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py"
+DISAGGREGATED_PREFILL_PROXY_SCRIPT = (
+    "examples/disaggregated_prefill_v1/load_balance_proxy_server_example.py"
+)
 DISAGGEGATED_PREFILL_PORT = 5333
 CONFIG_BASE_PATH = "tests/e2e/nightly/multi_node/config/models/"
 
@@ -30,17 +36,18 @@ class NodeInfo:
 
 
 class MultiNodeConfig:
-
-    def __init__(self,
-                 model: str,
-                 test_name: str,
-                 npu_per_node: int = 16,
-                 server_port: int = 8080,
-                 disaggregated_prefill: Optional[dict] = None,
-                 envs: Optional[dict] = None,
-                 nodes_info: Optional[list[NodeInfo]] = None,
-                 perf_cmd: Optional[str] = None,
-                 acc_cmd: Optional[str] = None):
+    def __init__(
+        self,
+        model: str,
+        test_name: str,
+        npu_per_node: int = 16,
+        server_port: int = 8080,
+        disaggregated_prefill: Optional[dict] = None,
+        envs: Optional[dict] = None,
+        nodes_info: Optional[list[NodeInfo]] = None,
+        perf_cmd: Optional[str] = None,
+        acc_cmd: Optional[str] = None,
+    ):
         self.test_name = test_name
         self.model = model
         self.nodes_info = nodes_info or []
@@ -61,20 +68,21 @@ class MultiNodeConfig:
         self._init_disaggregated_prefill()
 
         self._init_dist_env()
-        self.server_cmd = self._expand_env_vars(self.cur_node_info.server_cmd,
-                                                self.envs)
+        self.server_cmd = self._expand_env_vars(
+            self.cur_node_info.server_cmd, self.envs
+        )
 
     def _init_disaggregated_prefill(self):
         if self.disaggregated_prefill:
             decode_host_index = self.disaggregated_prefill.get(
-                "decoder_host_index")
+                "decoder_host_index"
+            )
             if not decode_host_index:
                 raise RuntimeError("got empty decode_host_index")
             self.decode_start_index: int = decode_host_index[0]
             self.num_prefillers = self.decode_start_index
             self.num_decoders = self.num_nodes - self.num_prefillers
-            if self.disaggregated_prefill.get(
-                    "ranktable_gen_path") is not None:
+            if self.disaggregated_prefill.get("ranktable_gen_path") is not None:
                 self._gen_ranktable()
 
     def _init_dist_env(self):
@@ -87,18 +95,21 @@ class MultiNodeConfig:
 
         master_ip = self.cluster_ips[0]
         if self.disaggregated_prefill:
-            self.envs[
-                "DISAGGREGATED_PREFILL_RANK_TABLE_PATH"] = self.disaggregated_prefill.get(
-                    "ranktable_path")
+            self.envs["DISAGGREGATED_PREFILL_RANK_TABLE_PATH"] = (
+                self.disaggregated_prefill.get("ranktable_path")
+            )
             if self.cur_index < self.decode_start_index:
                 master_ip = self.cluster_ips[0]
             else:
                 master_ip = self.cluster_ips[self.decode_start_index]
 
         self.envs["MASTER_IP"] = master_ip
-        ascend_path = "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages"
-        self.envs[
-            "LD_LIBRARY_PATH"] = f"{ascend_path}:{self.envs.get('LD_LIBRARY_PATH', os.environ.get('LD_LIBRARY_PATH', ''))}"
+        ascend_path = (
+            "/usr/local/Ascend/ascend-toolkit/latest/python/site-packages"
+        )
+        self.envs["LD_LIBRARY_PATH"] = (
+            f"{ascend_path}:{self.envs.get('LD_LIBRARY_PATH', os.environ.get('LD_LIBRARY_PATH', ''))}"
+        )
 
         # keep the envs keys and values as strings
         str_envs = {k: str(v) for k, v in self.envs.items()}
@@ -118,7 +129,6 @@ class MultiNodeConfig:
         return pattern.sub(replace_var, cmd)
 
     class _ProxyContext:
-
         def __init__(self, outer, proxy_script):
             self.outer = outer
             self.proxy_script = proxy_script
@@ -177,7 +187,8 @@ class MultiNodeConfig:
                     self.process.wait(timeout=5)
                 except subprocess.TimeoutExpired:
                     logger.warning(
-                        "Proxy process did not terminate, killing it...")
+                        "Proxy process did not terminate, killing it..."
+                    )
                     self.process.kill()
                 logger.info("Proxy server process terminated.")
 
@@ -190,7 +201,7 @@ class MultiNodeConfig:
         if not yaml_path:
             yaml_path = os.getenv("CONFIG_YAML_PATH", "DeepSeek-V3.yaml")
         yaml_path = os.path.join(CONFIG_BASE_PATH, yaml_path)
-        with open(yaml_path, 'r') as file:
+        with open(yaml_path, "r") as file:
             config_data = yaml.safe_load(file)
         test_name = config_data.get("test_name", "default_test")
         model = config_data.get("model", "default_model")
@@ -202,8 +213,9 @@ class MultiNodeConfig:
         server_port = config_data.get("server_port", 8080)
 
         deployments = config_data.get("deployment", [])
-        assert len(deployments) == num_nodes, \
+        assert len(deployments) == num_nodes, (
             f"Number of deployments ({len(deployments)}) must match num_nodes ({num_nodes})"
+        )
 
         cluster_ips = get_cluster_ips(num_nodes)
         nodes_info = []
@@ -213,26 +225,31 @@ class MultiNodeConfig:
             server_cmd = deployment.get("server_cmd", "")
             headless = "--headless" in server_cmd
             nodes_info.append(
-                NodeInfo(ip=cluster_ips[index],
-                         index=index,
-                         headless=headless,
-                         server_port=server_port,
-                         server_cmd=server_cmd))
+                NodeInfo(
+                    ip=cluster_ips[index],
+                    index=index,
+                    headless=headless,
+                    server_port=server_port,
+                    server_cmd=server_cmd,
+                )
+            )
 
         benchmarks = config_data.get("benchmarks") or {}
         assert benchmarks is not None, "benchmarks must be provided"
         perf_cmd = benchmarks.get("perf")
         acc_cmd = benchmarks.get("acc")
 
-        return cls(model=model,
-                   test_name=test_name,
-                   npu_per_node=npu_per_node,
-                   envs=envs,
-                   server_port=server_port,
-                   disaggregated_prefill=disaggregated_prefill,
-                   nodes_info=nodes_info,
-                   perf_cmd=perf_cmd,
-                   acc_cmd=acc_cmd)
+        return cls(
+            model=model,
+            test_name=test_name,
+            npu_per_node=npu_per_node,
+            envs=envs,
+            server_port=server_port,
+            disaggregated_prefill=disaggregated_prefill,
+            nodes_info=nodes_info,
+            perf_cmd=perf_cmd,
+            acc_cmd=acc_cmd,
+        )
 
     @property
     def world_size(self):
@@ -251,7 +268,8 @@ class MultiNodeConfig:
         master_port = DISAGGEGATED_PREFILL_PORT
         assert self.disaggregated_prefill is not None
         ranktable_gen_path = self.disaggregated_prefill.get(
-            "ranktable_gen_path")
+            "ranktable_gen_path"
+        )
         ranktable_path = self.disaggregated_prefill.get("ranktable_path")
         assert ranktable_gen_path is not None and ranktable_path is not None
         if os.path.exists(str(ranktable_path)):
@@ -288,7 +306,9 @@ class MultiNodeConfig:
         env["GLOO_SOCKET_IFNAME"] = self.nic_name
 
         logger.info(
-            f"Generating ranktable from command: {' '.join(map(str, cmd))}")
+            f"Generating ranktable from command: {' '.join(map(str, cmd))}"
+        )
         subprocess.run(cmd, env=env, check=True)
-        assert os.path.exists(
-            str(ranktable_path)), "failed generate ranktable.json"
+        assert os.path.exists(str(ranktable_path)), (
+            "failed generate ranktable.json"
+        )

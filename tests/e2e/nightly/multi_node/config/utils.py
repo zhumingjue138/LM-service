@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Copyright contributors to the LM-Service project
 import logging
 import os
 import socket
@@ -37,6 +39,7 @@ def temp_env(env_dict):
 #     finally:
 #         dist.destroy_process_group()
 
+
 def get_cluster_ips(family=socket.AF_INET) -> list[str]:
     if os.getenv("CLUSTER_ADDRESS"):
         cluster_dns = os.getenv("CLUSTER_ADDRESS").split(";")
@@ -55,6 +58,7 @@ def get_cluster_ips(family=socket.AF_INET) -> list[str]:
 
 def get_avaliable_port(start_port: int = 6000, end_port: int = 7000) -> int:
     import socket
+
     for port in range(start_port, end_port):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             try:

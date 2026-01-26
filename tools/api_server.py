@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Copyright contributors to the LM-Service project
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
 import argparse
 import asyncio
@@ -19,7 +20,11 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 
 from lm_service.apis.vllm.proxy import Proxy
-from lm_service.routing_logic import RandomRouter, RoundRobinRouter, LeastInFlightRouter
+from lm_service.routing_logic import (
+    RandomRouter,
+    RoundRobinRouter,
+    LeastInFlightRouter,
+)
 
 from vllm.multimodal.image import convert_image_mode
 from vllm.sampling_params import SamplingParams
@@ -55,8 +60,9 @@ async def chat_completions(request: Request):
         # load image and base64 decode
         if app.state.is_load_image:
             for i in range(image_num):
-                image_base64 = prompt[i].get("image_url",
-                                             "").get("url", "").split(",")[-1]
+                image_base64 = (
+                    prompt[i].get("image_url", "").get("url", "").split(",")[-1]
+                )
                 image_data = base64.b64decode(image_base64.encode("utf-8"))
                 image_buffer = BytesIO(image_data)
                 image = convert_image_mode(Image.open(image_buffer), "RGB")
@@ -77,18 +83,18 @@ async def chat_completions(request: Request):
         for i in range(image_num):
             image_str += image_pad
 
-        prompt_text = ("<|im_start|>system\n"
-                       "You are a helpful assistant.<|im_end|>\n"
-                       "<|im_start|>user\n"
-                       f"<|vision_start|>{image_str}<|vision_end|>"
-                       f"{prompt_text}<|im_end|>\n"
-                       "<|im_start|>assistant\n")
+        prompt_text = (
+            "<|im_start|>system\n"
+            "You are a helpful assistant.<|im_end|>\n"
+            "<|im_start|>user\n"
+            f"<|vision_start|>{image_str}<|vision_end|>"
+            f"{prompt_text}<|im_end|>\n"
+            "<|im_start|>assistant\n"
+        )
 
         prompt = {
             "prompt": prompt_text,
-            "multi_modal_data": {
-                "image": binary_list
-            },
+            "multi_modal_data": {"image": binary_list},
         }
 
         # Create sampling params
@@ -108,37 +114,33 @@ async def chat_completions(request: Request):
 
             async def stream_generator():
                 async for output in app.state.proxy.generate(
-                        prompt=prompt,
-                        sampling_params=sampling_params,
-                        request_id=request_id,
+                    prompt=prompt,
+                    sampling_params=sampling_params,
+                    request_id=request_id,
                 ):
                     prompt_tokens = len(output.prompt_token_ids)
                     completion_tokens = len(output.outputs[0].token_ids)
                     total_tokens = prompt_tokens + completion_tokens
                     # Format according to OpenAI's streaming format
                     chunk = {
-                        "id":
-                        request_id,
-                        "object":
-                        "chat.completion.chunk",
-                        "created":
-                        int(asyncio.get_event_loop().time()),
-                        "model":
-                        app.state.proxy.model_config.model,
-                        "choices": [{
-                            "index":
-                            0,
-                            "delta": {
-                                "content": output.outputs[0].text
-                            },
-                            "finish_reason":
-                            output.outputs[0].finish_reason
-                        }],
+                        "id": request_id,
+                        "object": "chat.completion.chunk",
+                        "created": int(asyncio.get_event_loop().time()),
+                        "model": app.state.proxy.model_config.model,
+                        "choices": [
+                            {
+                                "index": 0,
+                                "delta": {"content": output.outputs[0].text},
+                                "finish_reason": output.outputs[
+                                    0
+                                ].finish_reason,
+                            }
+                        ],
                         "usage": {
                             "prompt_tokens": prompt_tokens,
                             "completion_tokens": completion_tokens,
-                            "total_tokens": total_tokens
-                        }
+                            "total_tokens": total_tokens,
+                        },
                     }
                     yield f"data: {msgspec.json.encode(chunk).decode()}\n\n"
                 # End of stream
@@ -146,15 +148,16 @@ async def chat_completions(request: Request):
                 if lm_service_envs.TIMECOUNT_ENABLED:
                     asyncio.create_task(app.state.proxy.log_metrics())
 
-            return StreamingResponse(stream_generator(),
-                                     media_type="text/event-stream")
+            return StreamingResponse(
+                stream_generator(), media_type="text/event-stream"
+            )
         else:
             # For non-streaming, collect all outputs
             final_output = None
             async for output in app.state.proxy.generate(
-                    prompt=prompt,
-                    sampling_params=sampling_params,
-                    request_id=request_id,
+                prompt=prompt,
+                sampling_params=sampling_params,
+                request_id=request_id,
             ):
                 final_output = output
 
@@ -163,40 +166,40 @@ async def chat_completions(request: Request):
                 completion_tokens = len(final_output.outputs[0].token_ids)
                 total_tokens = prompt_tokens + completion_tokens
                 response = {
-                    "id":
-                    request_id,
-                    "object":
-                    "chat.completion",
-                    "created":
-                    int(asyncio.get_event_loop().time()),
-                    "model":
-                    app.state.proxy.model_config.model,
-                    "choices": [{
-                        "index":
-                        0,
-                        "message": {
-                            "role": "assistant",
-                            "content": final_output.outputs[0].text
-                        },
-                        "finish_reason":
-                        final_output.outputs[0].finish_reason
-                    }],
+                    "id": request_id,
+                    "object": "chat.completion",
+                    "created": int(asyncio.get_event_loop().time()),
+                    "model": app.state.proxy.model_config.model,
+                    "choices": [
+                        {
+                            "index": 0,
+                            "message": {
+                                "role": "assistant",
+                                "content": final_output.outputs[0].text,
+                            },
+                            "finish_reason": final_output.outputs[
+                                0
+                            ].finish_reason,
+                        }
+                    ],
                     "usage": {
                         "prompt_tokens": prompt_tokens,
                         "completion_tokens": completion_tokens,
-                        "total_tokens": total_tokens
-                    }
+                        "total_tokens": total_tokens,
+                    },
                 }
                 if lm_service_envs.TIMECOUNT_ENABLED:
                     await asyncio.sleep(envs.VLLM_LOG_STATS_INTERVAL)
                     await app.state.proxy.log_metrics()
                 return JSONResponse(content=response)
             else:
-                raise HTTPException(status_code=500,
-                                    detail="No response from proxy")
+                raise HTTPException(
+                    status_code=500, detail="No response from proxy"
+                )
     except Exception as e:
         print("Error processing chat completion request: %s", e)
         raise HTTPException(status_code=500, detail=str(e)) from e
+
 
 @app.get("/health")
 async def health_check():
@@ -210,23 +213,26 @@ async def controller_ctx(proxy_config_dict):
     yield c
     c.shutdown()
 
+
 async def run_server_worker(proxy_config_dict, host, port) -> None:
     async with controller_ctx(proxy_config_dict) as app.state.proxy:
         config = uvicorn.Config(app, host=host, port=port)
         server = uvicorn.Server(config)
         await server.serve()
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="VLLM Disaggregated Proxy")
-    parser.add_argument("--host",
-                        type=str,
-                        default="127.0.0.1",
-                        help="Proxy host")
+    parser.add_argument(
+        "--host", type=str, default="127.0.0.1", help="Proxy host"
+    )
     parser.add_argument("--port", type=int, default=8000, help="Proxy port")
-    parser.add_argument("--is-load-image",
-                        action='store_true',
-                        help="load image from path")
-    parser.add_argument("--proxy-config", type=str, help="proxy configuration as JSON")
+    parser.add_argument(
+        "--is-load-image", action="store_true", help="load image from path"
+    )
+    parser.add_argument(
+        "--proxy-config", type=str, help="proxy configuration as JSON"
+    )
 
     args = parser.parse_args()
     proxy_config_dict = json.loads(args.proxy_config)

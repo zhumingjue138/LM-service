@@ -1,10 +1,14 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Copyright contributors to the LM-Service project
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional
+
 
 @dataclass
 class NodeConfig:
     node_id: int
     container_name: str
+
 
 @dataclass
 class ClusterManager:
@@ -12,28 +16,26 @@ class ClusterManager:
 
     def __post_init__(self):
         if not self.node_info:
-            self.node_info = {
-                "e": [],
-                "pd": [],
-                "p": [],
-                "d": [],
-                "ds": []
-            }
+            self.node_info = {"e": [], "pd": [], "p": [], "d": [], "ds": []}
 
-    def add_node_info(self, node_type: str, node_id: int, container_name="epd_vllm_ascend"):
+    def add_node_info(
+        self, node_type: str, node_id: int, container_name="epd_vllm_ascend"
+    ):
         if node_type not in self.node_info:
             raise ValueError("node type can only be e,pd,p,d,ds")
         new_config = NodeConfig(node_id=node_id, container_name=container_name)
         self.node_info[node_type].append(new_config)
         print(f"add {node_type}: node_id={node_id}, container={container_name}")
 
-
     def get_all_info(self):
         return self.node_info
 
-
-    def get_node_info(self, node_type: str, index: int = 0) -> Optional[NodeConfig]:
-        if node_type in self.node_info and index < len(self.node_info[node_type]):
+    def get_node_info(
+        self, node_type: str, index: int = 0
+    ) -> Optional[NodeConfig]:
+        if node_type in self.node_info and index < len(
+            self.node_info[node_type]
+        ):
             return self.node_info[node_type][index]
         return None
 
@@ -50,10 +52,17 @@ class EnvManager:
                 "p": [],
                 "d": [],
                 "proxy": [],
-                "common": []
+                "common": [],
             }
 
-    def add_env(self, node_type: str, env_key: str = "", env_value: str = "", env_dict=None, index=0):
+    def add_env(
+        self,
+        node_type: str,
+        env_key: str = "",
+        env_value: str = "",
+        env_dict=None,
+        index=0,
+    ):
         if node_type not in self.env_info:
             raise ValueError("node type can only be e,pd,p,d,proxy,common")
         if env_dict is not None:
@@ -74,15 +83,14 @@ class EnvManager:
             else:
                 self.env_info[node_type][index][env_key] = env_value
 
-
-
     def get_all_env(self):
         return self.env_info
-
 
     def get_node_env(self, node_type: str, index: int = None):
         if node_type in self.env_info and index is None:
             return self.env_info[node_type]
-        elif node_type in self.env_info and index < len(self.env_info[node_type]):
+        elif node_type in self.env_info and index < len(
+            self.env_info[node_type]
+        ):
             return self.env_info[node_type][index]
         return None
