@@ -13,11 +13,20 @@ import numpy as np
 import uvicorn
 import uvloop
 import lm_service.envs as lm_service_envs
-import vllm.envs as envs
 
-from PIL import Image
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse, StreamingResponse
+try:
+    import vllm.envs as envs
+except (ImportError, ModuleNotFoundError) as e:
+    raise ImportError("Failed to import vllm.envs") from e
+
+try:
+    from PIL import Image
+    from fastapi import FastAPI, HTTPException, Request
+    from fastapi.responses import JSONResponse, StreamingResponse
+except (ImportError, ModuleNotFoundError) as e:
+    raise ImportError(
+        "Failed to import required dependencies (PIL, fastapi)"
+    ) from e
 
 from lm_service.apis.vllm.proxy import Proxy
 from lm_service.routing_logic import (
@@ -26,8 +35,13 @@ from lm_service.routing_logic import (
     LeastInFlightRouter,
 )
 
-from vllm.multimodal.image import convert_image_mode
-from vllm.sampling_params import SamplingParams
+try:
+    from vllm.multimodal.image import convert_image_mode
+    from vllm.sampling_params import SamplingParams
+except (ImportError, ModuleNotFoundError) as e:
+    raise ImportError(
+        "Failed to import vllm modules (multimodal.image, sampling_params)"
+    ) from e
 
 from contextlib import asynccontextmanager
 

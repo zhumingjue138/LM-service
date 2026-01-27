@@ -2,7 +2,10 @@
 # SPDX-FileCopyrightText: Copyright contributors to the LM-Service project
 import os
 
-import pytest
+try:
+    import pytest
+except ImportError:
+    pytest = None
 
 from ..conftest import RemoteEPDServer
 from .conftest import load_config

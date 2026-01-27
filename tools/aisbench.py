@@ -25,11 +25,17 @@ import traceback
 from collections import defaultdict
 from datetime import date
 
-import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
 import numpy as np
-import pandas as pd
-from matplotlib.patches import Patch
+
+try:
+    import matplotlib.pyplot as plt
+    import matplotlib.ticker as ticker
+    import pandas as pd
+    from matplotlib.patches import Patch
+except (ImportError, ModuleNotFoundError) as e:
+    raise ImportError(
+        "Failed to import required dependencies (matplotlib, pandas)"
+    ) from e
 
 
 def get_package_location(package_name):
