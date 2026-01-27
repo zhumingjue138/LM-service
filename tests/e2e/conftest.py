@@ -15,13 +15,13 @@ from pathlib import Path
 from typing import List, Optional, TypeVar, Union, Literal
 
 import importlib
+import pytest
+import requests
+import torch
+import pandas as pd
+import psutil
 
 try:
-    import pandas as pd
-    import psutil
-    import pytest
-    import requests
-    import torch
     from modelscope import snapshot_download  # type: ignore[import-untyped]
 except (ImportError, ModuleNotFoundError):
     pass
