@@ -38,11 +38,13 @@ except (ImportError, ModuleNotFoundError):
 # we not explicitly patch here, some of them might be effectiveless
 # in pytest scenario
 
-
-from vllm.distributed.parallel_state import (  # noqa E402
-    destroy_distributed_environment,
-    destroy_model_parallel,
-)
+try:
+    from vllm.distributed.parallel_state import (  # noqa E402
+        destroy_distributed_environment,
+        destroy_model_parallel,
+    )
+except (ImportError, ModuleNotFoundError):
+    pass
 
 _T = TypeVar("_T", nn.Module, torch.Tensor, BatchEncoding, BatchFeature, dict)
 _M = TypeVar("_M")
