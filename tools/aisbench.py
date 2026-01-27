@@ -380,6 +380,11 @@ def create_ttft_plot(
 
 
 benchmark_path = get_package_location("ais_bench_benchmark")
+if benchmark_path is None:
+    raise ImportError(
+        "Package 'ais_bench_benchmark' not found. "
+        "Please install it to use the aisbench functionality."
+    )
 DATASET_CONF_DIR = os.path.join(
     benchmark_path, "ais_bench/benchmark/configs/datasets"
 )
