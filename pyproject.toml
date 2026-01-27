@@ -27,6 +27,10 @@ develop = [
     "types-requests",
     "types-setuptools",
     "pytest-cov>=4.0",
+    "pytest>=9.0.1",
+    "pillow>=11.2.1",
+    "modelscope>=1.31.0",
+    "fastapi>=0.121.1",
     "coverage[toml]>=7.0",
 ]
 
