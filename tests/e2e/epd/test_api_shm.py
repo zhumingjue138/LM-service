@@ -12,7 +12,6 @@ try:
 except (ImportError, ModuleNotFoundError):
     run_aisbench_cases = None
 from ..nightly.multi_node.config.multi_node_epd_config import EnvManager
-from vllm.utils import get_open_port
 
 model_path = load_config().get("model_path")
 CONTAINER_NAME = load_config().get("container_name")
@@ -46,6 +45,7 @@ async def test_1e1pd_shm_tcp_001(
     ec transfer: shm
     Communication method: tcp(ipv4)
     """
+    from vllm.utils import get_open_port
 
     env = {"TRANSFER_PROTOCOL": "tcp"}
 
@@ -183,6 +183,8 @@ async def test_1e1pd_sc_shm_tcp_001(
     ec transfer: shm
     Communication method: tcp(ipv4)
     """
+    from vllm.utils import get_open_port
+
     env = {"TRANSFER_PROTOCOL": "tcp"}
 
     env_dict = EnvManager()

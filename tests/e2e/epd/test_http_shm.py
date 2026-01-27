@@ -8,7 +8,6 @@ from ..conftest import RemoteEPDServer, DisaggEpdProxy
 from .conftest import load_config
 from tools.aisbench import run_aisbench_cases
 from ..nightly.multi_node.config.multi_node_epd_config import EnvManager
-from vllm.utils import get_open_port
 
 model_path = load_config().get("model_path")
 CONTAINER_NAME = load_config().get("container_name")
@@ -40,6 +39,7 @@ async def test_1e1pd_shm_http_001(
     ec transfer: shm
     Communication method: http
     """
+    from vllm.utils import get_open_port
 
     env_dict = EnvManager()
     e_num = 1
