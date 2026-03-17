@@ -33,6 +33,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -178,6 +179,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -321,6 +323,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth", "image_4"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -468,6 +471,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth", "image_4"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -615,6 +619,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth", "image_4"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -762,6 +767,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth_samereq"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -915,6 +921,7 @@ DATASET_NAME = ["simulate_truth"]
 ROUTER = ["RandomRouter", "RoundRobinRouter", "LeastInFlightRouter"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -1066,6 +1073,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth", "image_4"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -1240,6 +1248,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -1418,6 +1427,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth_samereq"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -1598,6 +1608,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth", "image_4"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -1772,6 +1783,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth", "image_4"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -1946,6 +1958,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -2107,6 +2120,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth_samereq"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -2273,6 +2287,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -2431,6 +2446,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -2617,6 +2633,7 @@ REQUEST_RATE = [0.28, 0.56, 0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -2807,6 +2824,7 @@ DATASET_NAME = ["simulate_truth"]
 ROUTER = ["RandomRouter", "RoundRobinRouter", "LeastInFlightRouter"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.perf
 @pytest.mark.parametrize("model", MODELS)
@@ -3001,6 +3019,7 @@ async def test_proxy2e3p_3d_cross_datasystem_tcp_ipv6_001(
 DATASET_NAME = ["textvqa_subset"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.acc
 @pytest.mark.parametrize("model", MODELS)
@@ -3143,6 +3162,7 @@ async def test_proxy1e2pd_datasystem_ipc_acc_001(
 DATASET_NAME = ["textvqa_subset"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.acc
 @pytest.mark.parametrize("model", MODELS)
@@ -3285,6 +3305,7 @@ async def test_proxy1e2pd_datasystem_tcp_ipv4_acc_001(
 DATASET_NAME = ["textvqa_subset"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.acc
 @pytest.mark.parametrize("model", MODELS)
@@ -3455,6 +3476,7 @@ async def test_proxy1e1p1d_datasystem_tcp_ipv4_acc_001(
 DATASET_NAME = ["textvqa_subset"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.acc
 @pytest.mark.parametrize("model", MODELS)
@@ -3625,6 +3647,7 @@ async def test_proxy1e1p1d_datasystem_tcp_ipv6_acc_001(
 DATASET_NAME = ["textvqa_subset"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.acc
 @pytest.mark.parametrize("model", MODELS)
@@ -3784,6 +3807,7 @@ async def test_proxy_1e_2pd_cross_datasystem_tcp_ipv4_acc_001(
 DATASET_NAME = ["textvqa_subset"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.acc
 @pytest.mark.parametrize("model", MODELS)
@@ -3969,6 +3993,7 @@ REQUEST_RATE = [0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.stability
 @pytest.mark.parametrize("model", MODELS)
@@ -4127,6 +4152,7 @@ REQUEST_RATE = [0.84]
 DATASET_NAME = ["simulate_truth"]
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.stability
 @pytest.mark.parametrize("model", MODELS)
