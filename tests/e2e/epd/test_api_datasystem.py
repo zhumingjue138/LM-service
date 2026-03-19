@@ -13,7 +13,7 @@ from .conftest import load_config
 
 try:
     from tools.aisbench import run_aisbench_cases
-    from ..e2e.nightly.multi_node.config.utils import get_cluster_ips
+    from ..nightly.multi_node.config.utils import get_cluster_ips
 except (ImportError, ModuleNotFoundError):
     pass
 from ..nightly.multi_node.config.multi_node_epd_config import (
