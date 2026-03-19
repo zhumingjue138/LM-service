@@ -20,6 +20,7 @@ try:
     from pathlib import Path
 except (ImportError, ModuleNotFoundError):
     pass
+from ..nightly.multi_node.config.multi_node_epd_config import EnvManager
 
 
 model_path = load_config().get("model_path")
@@ -50,6 +51,9 @@ PROXY_ADDR = "/tmp/proxy"
 
 @pytest_asyncio.fixture(scope="class")
 async def setup_teardown():
+    env_dict = EnvManager()
+    env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", "0")
+    env_dict.add_env("pd", "ASCEND_RT_VISIBLE_DEVICES", "1")
     e_server_args = [
         "--no-enable-prefix-caching",
         "--model",
@@ -94,6 +98,7 @@ async def setup_teardown():
 
     async with RemoteEPDServer(
         run_mode="worker",
+        store_type="storage",
         pd_num=1,
         e_num=1,
         e_serve_args=e_server_args,
