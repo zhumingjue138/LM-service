@@ -375,7 +375,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "Nonetype" in str(message), "init success"
+            assert "NoneType" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_004(self, setup_teardown):
@@ -407,7 +407,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "Nonetype" in str(message), "init success"
+            assert "NoneType" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_005(self, setup_teardown):
@@ -536,7 +536,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "Nonetype" in str(message), "init success"
+            assert "NoneType" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_004(self, setup_teardown):
