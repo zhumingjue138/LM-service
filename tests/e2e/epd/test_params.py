@@ -4,6 +4,7 @@ import uuid
 import os
 import numpy as np
 from .conftest import load_config
+from vllm import SamplingParams
 
 
 try:
@@ -13,7 +14,6 @@ try:
 except ImportError:
     pass
 try:
-    from vllm import SamplingParams
     from lm_service.apis.vllm.proxy import Proxy
     from vllm.multimodal.image import convert_image_mode
     from ..conftest import RemoteEPDServer
