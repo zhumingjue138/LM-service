@@ -101,6 +101,7 @@ async def setup_teardown():
         store_type="storage",
         pd_num=1,
         e_num=1,
+        env_dict=env_dict,
         e_serve_args=e_server_args,
         pd_serve_args=pd_server_args,
     ) as server:
