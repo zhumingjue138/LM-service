@@ -3,6 +3,7 @@
 import uuid
 import os
 import numpy as np
+from .conftest import load_config
 
 
 try:
@@ -16,7 +17,6 @@ try:
     from lm_service.apis.vllm.proxy import Proxy
     from vllm.multimodal.image import convert_image_mode
     from ..conftest import RemoteEPDServer
-    from .conftest import load_config
     from pathlib import Path
 except (ImportError, ModuleNotFoundError):
     pass

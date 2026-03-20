@@ -4,6 +4,8 @@ import asyncio
 import os
 import uuid
 import numpy as np
+from vllm.multimodal.image import convert_image_mode
+from .conftest import load_config
 
 try:
     import pytest
@@ -14,14 +16,12 @@ except ImportError:
 
 try:
     from ..conftest import RemoteEPDServer
-    from .conftest import load_config
     from ..nightly.multi_node.config.utils import get_cluster_ips
     from ..nightly.multi_node.config.multi_node_epd_config import (
         ClusterManager,
         EnvManager,
     )
     from vllm.utils import get_open_port
-    from vllm.multimodal.image import convert_image_mode
     from vllm import SamplingParams
     from lm_service.apis.vllm.proxy import Proxy
     from pathlib import Path
