@@ -42,13 +42,6 @@ ENABLE_PREFIX = [True, False]
 DATASET_NAME = ["simulate_truth"]
 ROUTER = ["RandomRouter", "RoundRobinRouter", "LeastInFlightRouter"]
 
-image = convert_image_mode(
-    Image.open(
-        Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
-    ),
-    "RGB",
-)
-IMAGE_ARRAY = np.array(image)
 PROMPT_TEMPLATE = (
     "<|im_start|>system\n"
     "You are a helpful assistant.<|im_end|>\n"
@@ -68,6 +61,13 @@ async def test_lm_service_request_timeout_seconds_001(model: str, tp_size: int):
     """
     LM_SERVICE_REQUEST_TIMEOUT_SECONDS is empty; generate fails and returns an error.
     """
+    image = convert_image_mode(
+        Image.open(
+            Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+        ),
+        "RGB",
+    )
+    IMAGE_ARRAY = np.array(image)
     e_num = 1
     pd_num = 1
     env = {
@@ -211,6 +211,13 @@ async def test_lm_service_request_timeout_seconds_002(model: str, tp_size: int):
     """
     LM_SERVICE_REQUEST_TIMEOUT_SECONDS is "aaa"; generate fails and returns an error.
     """
+    image = convert_image_mode(
+        Image.open(
+            Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+        ),
+        "RGB",
+    )
+    IMAGE_ARRAY = np.array(image)
     e_num = 1
     pd_num = 1
     env = {
@@ -354,6 +361,13 @@ async def test_lm_service_request_timeout_seconds_003(model: str, tp_size: int):
     """
     LM_SERVICE_REQUEST_TIMEOUT_SECONDS is "0"; generate fails and returns an error.
     """
+    image = convert_image_mode(
+        Image.open(
+            Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+        ),
+        "RGB",
+    )
+    IMAGE_ARRAY = np.array(image)
     e_num = 1
     pd_num = 1
     env = {
@@ -497,6 +511,13 @@ async def test_lm_service_request_timeout_seconds_004(model: str, tp_size: int):
     """
     LM_SERVICE_REQUEST_TIMEOUT_SECONDS is "-1"; generate fails and returns an error.
     """
+    image = convert_image_mode(
+        Image.open(
+            Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+        ),
+        "RGB",
+    )
+    IMAGE_ARRAY = np.array(image)
     e_num = 1
     pd_num = 1
     env = {
@@ -644,6 +665,13 @@ async def test_lm_service_request_timeout_seconds_005(
     LM_SERVICE_REQUEST_TIMEOUT_SECONDS is 1; single-node EPD, max_tokens=2000, serial
     generate calls fail and return an error.
     """
+    image = convert_image_mode(
+        Image.open(
+            Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+        ),
+        "RGB",
+    )
+    IMAGE_ARRAY = np.array(image)
     e_num = 1
     pd_num = 1
     env = {
@@ -794,6 +822,13 @@ async def test_lm_service_request_timeout_seconds_006(
     LM_SERVICE_REQUEST_TIMEOUT_SECONDS is 1; multi-node EPD, max_tokens=2000, serial
     generate calls fail and return an error.
     """
+    image = convert_image_mode(
+        Image.open(
+            Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+        ),
+        "RGB",
+    )
+    IMAGE_ARRAY = np.array(image)
     e_num = 1
     p_num = 1
     d_num = 1
@@ -996,6 +1031,13 @@ async def test_lm_service_request_timeout_seconds_007(
     LM_SERVICE_REQUEST_TIMEOUT_SECONDS is 1; multi-node EPD, max_tokens=2000, parallel
     generate calls fail and return an error.
     """
+    image = convert_image_mode(
+        Image.open(
+            Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+        ),
+        "RGB",
+    )
+    IMAGE_ARRAY = np.array(image)
     e_num = 1
     p_num = 1
     d_num = 1

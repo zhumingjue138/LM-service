@@ -33,7 +33,6 @@ PROMPT_TEMPLATE = (
     "what is the brand of this camera?<|im_end|>\n"
     "<|im_start|>assistant\n"
 )
-SAMPLING_PARAMS = SamplingParams(max_tokens=128, temperature=0.0)
 SHARED_STORAGE_PATH = "/dev/shm/epd/storage"
 
 image = convert_image_mode(
