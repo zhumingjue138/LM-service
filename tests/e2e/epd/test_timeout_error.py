@@ -4,7 +4,6 @@ import asyncio
 import os
 import uuid
 import numpy as np
-from vllm.multimodal.image import convert_image_mode
 from .conftest import load_config
 
 try:
@@ -15,6 +14,7 @@ except ImportError:
 
 
 try:
+    from vllm.multimodal.image import convert_image_mode
     from ..conftest import RemoteEPDServer
     from ..nightly.multi_node.config.utils import get_cluster_ips
     from ..nightly.multi_node.config.multi_node_epd_config import (
@@ -57,7 +57,6 @@ PROMPT_TEMPLATE = (
     "what is the brand of this camera?<|im_end|>\n"
     "<|im_start|>assistant\n"
 )
-SAMPLING_PARAMS = SamplingParams(max_tokens=128, temperature=0.0)
 
 
 @pytest.mark.skip(reason="skip for now")
@@ -193,7 +192,7 @@ async def test_lm_service_request_timeout_seconds_001(model: str, tp_size: int):
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             async for o in outputs:
@@ -336,7 +335,7 @@ async def test_lm_service_request_timeout_seconds_002(model: str, tp_size: int):
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             async for o in outputs:
@@ -479,7 +478,7 @@ async def test_lm_service_request_timeout_seconds_003(model: str, tp_size: int):
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             async for o in outputs:
@@ -622,7 +621,7 @@ async def test_lm_service_request_timeout_seconds_004(model: str, tp_size: int):
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             async for o in outputs:

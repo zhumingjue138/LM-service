@@ -4,7 +4,6 @@ import uuid
 import os
 import numpy as np
 from .conftest import load_config
-from vllm import SamplingParams
 
 
 try:
@@ -14,6 +13,7 @@ try:
 except ImportError:
     pass
 try:
+    from vllm import SamplingParams
     from lm_service.apis.vllm.proxy import Proxy
     from vllm.multimodal.image import convert_image_mode
     from ..conftest import RemoteEPDServer
@@ -138,7 +138,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -170,7 +170,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -203,7 +203,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -236,7 +236,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -269,7 +269,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -301,7 +301,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -336,7 +336,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -369,7 +369,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -402,7 +402,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -435,7 +435,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -467,7 +467,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -502,7 +502,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -535,7 +535,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -568,7 +568,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -601,7 +601,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -633,7 +633,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -668,7 +668,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -701,7 +701,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -734,7 +734,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -766,7 +766,7 @@ class TestEPDProxy:
                 prompt={
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -799,7 +799,7 @@ class TestEPDProxy:
                     "prompt": "",
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -832,7 +832,7 @@ class TestEPDProxy:
                     "prompt": 12345,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -865,7 +865,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -898,7 +898,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -931,7 +931,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"video": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -964,7 +964,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": ""},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -997,7 +997,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": image},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -1027,7 +1027,7 @@ class TestEPDProxy:
             )
             outputs = p.generate(
                 prompt={""},
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -1056,7 +1056,8 @@ class TestEPDProxy:
                 enable_health_monitor=True,
             )
             outputs = p.generate(
-                sampling_params=SAMPLING_PARAMS, request_id=str(uuid.uuid4())
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
+                request_id=str(uuid.uuid4()),
             )
             output = None
             print("proxy is success")
@@ -2604,7 +2605,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
             )
             output = None
             print("proxy is success")
@@ -2638,7 +2639,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id="",
             )
             output = None
@@ -2671,7 +2672,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=12345,
             )
             output = None
@@ -2704,7 +2705,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id="12345",
             )
             outputs2 = p.generate(
@@ -2712,7 +2713,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id="12345",
             )
             output = None
@@ -2772,7 +2773,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": image_array},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -2820,7 +2821,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
@@ -2850,7 +2851,7 @@ class TestEPDProxy:
                     "prompt": PROMPT_TEMPLATE,
                     "multi_modal_data": {"image": IMAGE_ARRAY},
                 },
-                sampling_params=SAMPLING_PARAMS,
+                sampling_params=SamplingParams(max_tokens=128, temperature=0.0),
                 request_id=str(uuid.uuid4()),
             )
             output = None
