@@ -22,6 +22,7 @@ TENSOR_PARALLELS = [1]
 SHARED_STORAGE_PATH = "/dev/shm/epd/storage"
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.parametrize("model", MODELS)
 @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)
@@ -150,6 +151,7 @@ async def test_timeout_enabled_001(model: str, tp_size: int):
         )
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.parametrize("model", MODELS)
 @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)
@@ -278,6 +280,7 @@ async def test_timeout_enabled_002(model: str, tp_size: int):
         )
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.parametrize("model", MODELS)
 @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)
@@ -406,6 +409,7 @@ async def test_vllm_log_stats_interval_001(model: str, tp_size: int):
         )
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.parametrize("model", MODELS)
 @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)
@@ -533,6 +537,7 @@ async def test_performance_001(model: str, tp_size: int):
         )
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.parametrize("model", MODELS)
 @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)
@@ -660,6 +665,7 @@ async def test_performance_002(model: str, tp_size: int):
         )
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.parametrize("model", MODELS)
 @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)

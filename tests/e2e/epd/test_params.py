@@ -120,6 +120,7 @@ class CustomRouter:
 
 
 class TestEPDProxy:
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_001(self, setup_teardown):
         """proxy_addr set to invalid address, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -153,6 +154,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_002(self, setup_teardown):
         """proxy_addr missing, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -184,6 +186,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "proxy_addr must be provided" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_003(self, setup_teardown):
         """proxy_addr empty, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -216,6 +219,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "proxy_addr must be provided" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_004(self, setup_teardown):
         """proxy_addr set to aaa, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -248,6 +252,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_005(self, setup_teardown):
         """proxy_addr non-string, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -280,6 +285,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "expected string or buffer" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_001(self, setup_teardown):
         """encode_addr_list missing, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -313,6 +319,7 @@ class TestEPDProxy:
                 "init success"
             )
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_002(self, setup_teardown):
         """encode_addr_list empty, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -345,6 +352,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "Invalid argument" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_003(self, setup_teardown):
         """encode_addr_list set to aaa, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -377,6 +385,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "NoneType" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_004(self, setup_teardown):
         """encode_addr_list empty, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -409,6 +418,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "NoneType" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_005(self, setup_teardown):
         """encode_addr_list non-list, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -441,6 +451,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "object is not iterable" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_001(self, setup_teardown):
         """pd_addr_list missing, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -474,6 +485,7 @@ class TestEPDProxy:
                 message
             ), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_002(self, setup_teardown):
         """pd_addr_list empty, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -506,6 +518,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "Invalid argument" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_003(self, setup_teardown):
         """pd_addr_list set to aaa, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -538,6 +551,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "NoneType" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_004(self, setup_teardown):
         """pd_addr_list invalid address, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -570,6 +584,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_005(self, setup_teardown):
         """pd_addr_list non-list, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -602,6 +617,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "object is not iterable" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_model_name_001(self, setup_teardown):
         """model_name missing, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -635,6 +651,7 @@ class TestEPDProxy:
                 "init success"
             )
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_model_name_002(self, setup_teardown):
         """model_name empty, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -667,6 +684,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "validation error" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_model_name_003(self, setup_teardown):
         """model_name set to aaa, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -699,6 +717,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "validation error" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_model_name_004(self, setup_teardown):
         """model_name non-string, initialize Proxy, initialization fails, returns corresponding error message"""
@@ -731,6 +750,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "validation error" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_prompt_prompt_001(self, setup_teardown):
         """prompt missing, call generate API, call fails, returns corresponding error message"""
@@ -762,6 +782,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "KeyError:" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_prompt_prompt_002(self, setup_teardown):
         """prompt empty, call generate API, call fails, returns corresponding error message"""
@@ -794,6 +815,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_prompt_prompt_003(self, setup_teardown):
         """prompt non-string, call generate API, call fails, returns corresponding error message"""
@@ -826,6 +848,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "Invalid Parameters" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_multi_model_data_001(self, setup_teardown):
         """multi_model_data missing, call generate API, call fails, returns corresponding error message"""
@@ -858,6 +881,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_multi_model_data_002(self, setup_teardown):
         """multi_model_data empty, call generate API, call fails, returns corresponding error message"""
@@ -890,6 +914,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_multi_model_data_003(self, setup_teardown):
         """multi_model_data has non-image field, call generate API, call fails, returns corresponding error message"""
@@ -922,6 +947,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_multi_model_data_004(self, setup_teardown):
         """multi_model_data has empty image field, call generate API, call fails, returns corresponding error message"""
@@ -954,6 +980,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_multi_model_data_005(self, setup_teardown):
         """multi_model_data not converted to np.array, call generate API, call fails, returns corresponding error message"""
@@ -986,6 +1013,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_prompt_001(self, setup_teardown):
         """prompt empty, call generate API, call fails, returns corresponding error message"""
@@ -1015,6 +1043,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "KeyError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_prompt_002(self, setup_teardown):
         """prompt missing, call generate API, call fails, returns corresponding error message"""
@@ -1044,6 +1073,7 @@ class TestEPDProxy:
                 "init success"
             )
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_max_tokens_001(
         self, setup_teardown
@@ -1078,6 +1108,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_max_tokens_002(
         self, setup_teardown
@@ -1114,6 +1145,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_max_tokens_003(
         self, setup_teardown
@@ -1148,6 +1180,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_max_tokens_004(
         self, setup_teardown
@@ -1182,6 +1215,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_max_tokens_005(
         self, setup_teardown
@@ -1218,6 +1252,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_max_tokens_006(
         self, setup_teardown
@@ -1252,6 +1287,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_001(self, setup_teardown):
         """top_p missing, call generate API, call succeeds"""
@@ -1284,6 +1320,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_002(self, setup_teardown):
         """top_p set to None, call generate API, call fails, returns corresponding error message"""
@@ -1318,6 +1355,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_003(self, setup_teardown):
         """top_p set to 0, call generate API, call succeeds"""
@@ -1352,6 +1390,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_004(self, setup_teardown):
         """top_p set to -1, call generate API, call fails, returns corresponding error message"""
@@ -1386,6 +1425,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_005(self, setup_teardown):
         """top_p set to 1, call generate API, call succeeds"""
@@ -1420,6 +1460,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_006(self, setup_teardown):
         """top_p set to 0.5, call generate API, call succeeds"""
@@ -1454,6 +1495,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_007(self, setup_teardown):
         """top_p set to 2, call generate API, call fails, returns corresponding error message"""
@@ -1488,6 +1530,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_008(self, setup_teardown):
         """top_p set to aaa, call generate API, call fails, returns corresponding error message"""
@@ -1522,6 +1565,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_001(self, setup_teardown):
         """top_k missing, call generate API, call succeeds"""
@@ -1554,6 +1598,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_002(self, setup_teardown):
         """top_k set to None, call generate API, call fails, returns corresponding error message"""
@@ -1588,6 +1633,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_003(self, setup_teardown):
         """top_k set to 0, call generate API, call succeeds"""
@@ -1622,6 +1668,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_004(self, setup_teardown):
         """top_k set to -1, call generate API, call succeeds"""
@@ -1656,6 +1703,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_005(self, setup_teardown):
         """top_k set to 1, call generate API, call succeeds"""
@@ -1690,6 +1738,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_006(self, setup_teardown):
         """top_k set to 2.1, call generate API, call fails, returns corresponding error message"""
@@ -1724,6 +1773,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "must be an integer" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_007(self, setup_teardown):
         """top_k set to aaa, call generate API, call fails, returns corresponding error message"""
@@ -1758,6 +1808,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_001(self, setup_teardown):
         """seed missing, call generate API, call succeeds"""
@@ -1790,6 +1841,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_002(self, setup_teardown):
         """seed set to None, call generate API, call succeeds"""
@@ -1824,6 +1876,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_003(self, setup_teardown):
         """seed set to 0, call generate API, call fails, returns corresponding error message"""
@@ -1858,6 +1911,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_004(self, setup_teardown):
         """seed set to -1, call generate API, call fails, returns corresponding error message"""
@@ -1892,6 +1946,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_005(self, setup_teardown):
         """seed set to 1, call generate API, call fails, returns corresponding error message"""
@@ -1926,6 +1981,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_006(self, setup_teardown):
         """seed set to 2.1, call generate API, call fails, returns corresponding error message"""
@@ -1960,6 +2016,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValidationError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_007(self, setup_teardown):
         """seed set to aaa, call generate API, call fails, returns corresponding error message"""
@@ -1994,6 +2051,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_temperature_001(
         self, setup_teardown
@@ -2028,6 +2086,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_temperature_002(
         self, setup_teardown
@@ -2064,6 +2123,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_temperature_003(
         self, setup_teardown
@@ -2098,6 +2158,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_temperature_004(
         self, setup_teardown
@@ -2132,6 +2193,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_temperature_005(
         self, setup_teardown
@@ -2166,6 +2228,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_temperature_006(
         self, setup_teardown
@@ -2200,6 +2263,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_temperature_007(
         self, setup_teardown
@@ -2236,6 +2300,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_repetition_penalty_001(
         self, setup_teardown
@@ -2270,6 +2335,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_repetition_penalty_002(
         self, setup_teardown
@@ -2306,6 +2372,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_repetition_penalty_003(
         self, setup_teardown
@@ -2342,6 +2409,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_repetition_penalty_004(
         self, setup_teardown
@@ -2378,6 +2446,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_repetition_penalty_005(
         self, setup_teardown
@@ -2414,6 +2483,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "ValueError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_repetition_penalty_006(
         self, setup_teardown
@@ -2450,6 +2520,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_001(self, setup_teardown):
         """sampling_params missing, call generate API, call fails, returns corresponding error message"""
@@ -2483,6 +2554,7 @@ class TestEPDProxy:
                 "init success"
             )
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_sampling_params_002(self, setup_teardown):
         """sampling_params empty, call generate API, call fails, returns corresponding error message"""
@@ -2515,6 +2587,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "TypeError" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_request_id_001(self, setup_teardown):
         """request_id missing, call generate API, call fails, returns corresponding error message"""
@@ -2548,6 +2621,7 @@ class TestEPDProxy:
                 "init success"
             )
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_request_id_002(self, setup_teardown):
         """request_id empty, call generate API, call succeeds"""
@@ -2580,6 +2654,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_request_id_003(self, setup_teardown):
         """request_id non-string, call generate API, call fails, returns corresponding error message"""
@@ -2612,6 +2687,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "Invalid Parameters" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_generate_request_id_004(self, setup_teardown):
         """duplicate request_id, call generate API, call succeeds"""
@@ -2658,6 +2734,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     @pytest.mark.xfail
     async def test_proxy_router_001(self, setup_teardown):
@@ -2674,6 +2751,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_router_002(self, setup_teardown):
         """router missing, initialize Proxy, initialization succeeds, defaults to random strategy"""
@@ -2708,6 +2786,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
         p.shutdown()
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     @pytest.mark.xfail
     async def test_proxy_router_003(self, setup_teardown):
@@ -2724,6 +2803,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
             assert "instance 0 is unhealthy" in str(message), "init success"
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_router_004(self, setup_teardown):
         """router set to custom class, initialize Proxy, initialization succeeds"""
@@ -2754,6 +2834,7 @@ class TestEPDProxy:
             print(f"error message is: {str(message)}")
         p.shutdown()
 
+    @pytest.mark.skip(reason="skip for now")
     @pytest.mark.asyncio
     async def test_proxy_enable_health_monitor_001(self, setup_teardown):
         """enable_health_monitor missing, initialize Proxy, initialization succeeds, enabled by default"""

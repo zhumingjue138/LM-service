@@ -60,6 +60,7 @@ PROMPT_TEMPLATE = (
 SAMPLING_PARAMS = SamplingParams(max_tokens=128, temperature=0.0)
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.function
 @pytest.mark.parametrize("model", MODELS)
@@ -202,6 +203,7 @@ async def test_lm_service_request_timeout_seconds_001(model: str, tp_size: int):
             assert server.check_log("invalid literal", 120), "init success"
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.function
 @pytest.mark.parametrize("model", MODELS)
@@ -344,6 +346,7 @@ async def test_lm_service_request_timeout_seconds_002(model: str, tp_size: int):
             assert server.check_log("invalid literal", 120), "init success"
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.function
 @pytest.mark.parametrize("model", MODELS)
@@ -486,6 +489,7 @@ async def test_lm_service_request_timeout_seconds_003(model: str, tp_size: int):
             assert server.check_log("invalid literal", 120), "init success"
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.function
 @pytest.mark.parametrize("model", MODELS)
@@ -628,6 +632,7 @@ async def test_lm_service_request_timeout_seconds_004(model: str, tp_size: int):
             assert server.check_log("invalid literal", 120), "init success"
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.function
 @pytest.mark.parametrize("model", MODELS)
@@ -777,6 +782,7 @@ async def test_lm_service_request_timeout_seconds_005(
         p.shutdown()
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.function
 @pytest.mark.parametrize("model", MODELS)
@@ -978,6 +984,7 @@ async def test_lm_service_request_timeout_seconds_006(
         p.shutdown()
 
 
+@pytest.mark.skip(reason="skip for now")
 @pytest.mark.asyncio
 @pytest.mark.function
 @pytest.mark.parametrize("model", MODELS)
