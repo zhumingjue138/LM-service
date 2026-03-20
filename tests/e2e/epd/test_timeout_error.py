@@ -2,12 +2,12 @@
 # SPDX-FileCopyrightText: Copyright contributors to the LM-Service project
 import asyncio
 import os
-from PIL import Image
 import uuid
 import numpy as np
 
 try:
     import pytest
+    from PIL import Image
 except ImportError:
     pass
 

@@ -3,12 +3,12 @@
 import uuid
 import os
 import numpy as np
-from PIL import Image
 
 
 try:
     import pytest
     import pytest_asyncio
+    from PIL import Image
 except ImportError:
     pass
 try:
