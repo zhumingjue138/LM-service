@@ -28,6 +28,14 @@ SHARED_STORAGE_PATH = "/dev/shm/epd/storage"
 async def test_timeout_enabled_001(model: str, tp_size: int):
     """timeout_enabled=1: instance starts successfully and prints timing statistics."""
     env_dict = EnvManager()
+    e_num = 1
+    pd_num = 2
+    for i in range(e_num):
+        env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", str(i))
+    for i in range(pd_num):
+        env_dict.add_env(
+            "pd", "ASCEND_RT_VISIBLE_DEVICES", str(i + e_num), index=i
+        )
     env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", "0")
     env_dict.add_env("pd", "ASCEND_RT_VISIBLE_DEVICES", "1")
     env_dict.add_env("common", "TIMECOUNT_ENABLED", "1")
@@ -116,9 +124,11 @@ async def test_timeout_enabled_001(model: str, tp_size: int):
         case_dict["request_rate"] = request_rate[i]
         new_case_dict = copy.deepcopy(case_dict)
         aisbench_cases.append(new_case_dict)
-    api_port = 10001
+    api_port = 10003
     async with RemoteEPDServer(
-        start_mode="http",
+        run_mode="worker",
+        store_type="storage",
+        proxy_type="api_server",
         api_server_port=api_port,
         pd_num=2,
         e_num=1,
@@ -146,6 +156,14 @@ async def test_timeout_enabled_001(model: str, tp_size: int):
 async def test_timeout_enabled_002(model: str, tp_size: int):
     """timeout_enabled is neither 0 nor 1: instance start fails and prints the error."""
     env_dict = EnvManager()
+    e_num = 1
+    pd_num = 2
+    for i in range(e_num):
+        env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", str(i))
+    for i in range(pd_num):
+        env_dict.add_env(
+            "pd", "ASCEND_RT_VISIBLE_DEVICES", str(i + e_num), index=i
+        )
     env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", "0")
     env_dict.add_env("pd", "ASCEND_RT_VISIBLE_DEVICES", "1")
     env_dict.add_env("common", "TIMECOUNT_ENABLED", "0.5")
@@ -234,9 +252,11 @@ async def test_timeout_enabled_002(model: str, tp_size: int):
         case_dict["request_rate"] = request_rate[i]
         new_case_dict = copy.deepcopy(case_dict)
         aisbench_cases.append(new_case_dict)
-    api_port = 10001
+    api_port = 10003
     async with RemoteEPDServer(
-        start_mode="http",
+        run_mode="worker",
+        store_type="storage",
+        proxy_type="api_server",
         api_server_port=api_port,
         pd_num=2,
         e_num=1,
@@ -264,6 +284,14 @@ async def test_timeout_enabled_002(model: str, tp_size: int):
 async def test_vllm_log_stats_interval_001(model: str, tp_size: int):
     """vllm_log_stats_interval=20: instance starts successfully and prints timing statistics."""
     env_dict = EnvManager()
+    e_num = 1
+    pd_num = 2
+    for i in range(e_num):
+        env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", str(i))
+    for i in range(pd_num):
+        env_dict.add_env(
+            "pd", "ASCEND_RT_VISIBLE_DEVICES", str(i + e_num), index=i
+        )
     env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", "0")
     env_dict.add_env("pd", "ASCEND_RT_VISIBLE_DEVICES", "1")
     env_dict.add_env("common", "TIMECOUNT_ENABLED", "1")
@@ -352,9 +380,11 @@ async def test_vllm_log_stats_interval_001(model: str, tp_size: int):
         case_dict["request_rate"] = request_rate[i]
         new_case_dict = copy.deepcopy(case_dict)
         aisbench_cases.append(new_case_dict)
-    api_port = 10001
+    api_port = 10003
     async with RemoteEPDServer(
-        start_mode="http",
+        run_mode="worker",
+        store_type="storage",
+        proxy_type="api_server",
         api_server_port=api_port,
         pd_num=2,
         e_num=1,
@@ -382,6 +412,14 @@ async def test_vllm_log_stats_interval_001(model: str, tp_size: int):
 async def test_performance_001(model: str, tp_size: int):
     """Timing enabled; QPS 0.28-1.78; instance starts and prints stats; compare TTFT/TPOT vs timing off for regression."""
     env_dict = EnvManager()
+    e_num = 1
+    pd_num = 2
+    for i in range(e_num):
+        env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", str(i))
+    for i in range(pd_num):
+        env_dict.add_env(
+            "pd", "ASCEND_RT_VISIBLE_DEVICES", str(i + e_num), index=i
+        )
     env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", "0")
     env_dict.add_env("pd", "ASCEND_RT_VISIBLE_DEVICES", "1")
     env_dict.add_env("common", "TIMECOUNT_ENABLED", "1")
@@ -469,9 +507,11 @@ async def test_performance_001(model: str, tp_size: int):
         case_dict["request_rate"] = request_rate[i]
         new_case_dict = copy.deepcopy(case_dict)
         aisbench_cases.append(new_case_dict)
-    api_port = 10001
+    api_port = 10003
     async with RemoteEPDServer(
-        start_mode="http",
+        run_mode="worker",
+        store_type="storage",
+        proxy_type="api_server",
         api_server_port=api_port,
         pd_num=2,
         e_num=1,
@@ -499,6 +539,14 @@ async def test_performance_001(model: str, tp_size: int):
 async def test_performance_002(model: str, tp_size: int):
     """Timing disabled; QPS 0.28-1.78; instance starts successfully and prints timing statistics."""
     env_dict = EnvManager()
+    e_num = 1
+    pd_num = 2
+    for i in range(e_num):
+        env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", str(i))
+    for i in range(pd_num):
+        env_dict.add_env(
+            "pd", "ASCEND_RT_VISIBLE_DEVICES", str(i + e_num), index=i
+        )
     env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", "0")
     env_dict.add_env("pd", "ASCEND_RT_VISIBLE_DEVICES", "1")
     env_dict.add_env("common", "TIMECOUNT_ENABLED", "0")
@@ -586,9 +634,11 @@ async def test_performance_002(model: str, tp_size: int):
         case_dict["request_rate"] = request_rate[i]
         new_case_dict = copy.deepcopy(case_dict)
         aisbench_cases.append(new_case_dict)
-    api_port = 10001
+    api_port = 10003
     async with RemoteEPDServer(
-        start_mode="http",
+        run_mode="worker",
+        store_type="storage",
+        proxy_type="api_server",
         api_server_port=api_port,
         pd_num=2,
         e_num=1,
@@ -616,6 +666,14 @@ async def test_performance_002(model: str, tp_size: int):
 async def test_longterm_001(model: str, tp_size: int):
     """Timing enabled; QPS 0.28; instance starts; sustained load 2h; prints timing statistics."""
     env_dict = EnvManager()
+    e_num = 1
+    pd_num = 2
+    for i in range(e_num):
+        env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", str(i))
+    for i in range(pd_num):
+        env_dict.add_env(
+            "pd", "ASCEND_RT_VISIBLE_DEVICES", str(i + e_num), index=i
+        )
     env_dict.add_env("e", "ASCEND_RT_VISIBLE_DEVICES", "0")
     env_dict.add_env("pd", "ASCEND_RT_VISIBLE_DEVICES", "1")
     env_dict.add_env("common", "TIMECOUNT_ENABLED", "1")
@@ -704,9 +762,11 @@ async def test_longterm_001(model: str, tp_size: int):
         case_dict["request_rate"] = request_rate[i]
         new_case_dict = copy.deepcopy(case_dict)
         aisbench_cases.append(new_case_dict)
-    api_port = 10001
+    api_port = 10003
     async with RemoteEPDServer(
-        start_mode="http",
+        run_mode="worker",
+        store_type="storage",
+        proxy_type="api_server",
         api_server_port=api_port,
         pd_num=2,
         e_num=1,
