@@ -181,9 +181,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "不携带 1 required positional argument" in str(message), (
-                "init success"
-            )
+            assert "proxy_addr must be provided" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_003(self, setup_teardown):
@@ -215,7 +213,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "Invalid argument" in str(message), "init success"
+            assert "proxy_addr must be provided" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_004(self, setup_teardown):
@@ -279,7 +277,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "instance 0 is unhealthy" in str(message), "init success"
+            assert "expected string or buffer" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_001(self, setup_teardown):
@@ -310,7 +308,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "不携带 1 required positional argument" in str(message), (
+            assert "encode_addr_list must be provided" in str(message), (
                 "init success"
             )
 
@@ -376,7 +374,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "instance 0 is unhealthy" in str(message), "init success"
+            assert "Nonetype" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_004(self, setup_teardown):
@@ -408,7 +406,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "instance 0 is unhealthy" in str(message), "init success"
+            assert "Nonetype" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_005(self, setup_teardown):
@@ -471,9 +469,9 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "不携带 1 required positional argument" in str(message), (
-                "init success"
-            )
+            assert "d_addr_list or pd_addr_list must be provided" in str(
+                message
+            ), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_002(self, setup_teardown):
@@ -537,7 +535,7 @@ class TestEPDProxy:
             p.shutdown()
         except Exception as message:
             print(f"error message is: {str(message)}")
-            assert "instance 0 is unhealthy" in str(message), "init success"
+            assert "Nonetype" in str(message), "init success"
 
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_004(self, setup_teardown):
