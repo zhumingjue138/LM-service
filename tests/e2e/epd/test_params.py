@@ -35,13 +35,6 @@ PROMPT_TEMPLATE = (
 )
 SHARED_STORAGE_PATH = "/dev/shm/epd/storage"
 
-image = convert_image_mode(
-    Image.open(
-        Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
-    ),
-    "RGB",
-)
-IMAGE_ARRAY = np.array(image)
 
 E_ADDR_LIST = ["/tmp/encoder_0"]
 PD_ADDR_LIST = ["/tmp/pd_0"]
@@ -123,6 +116,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_001(self, setup_teardown):
         """proxy_addr set to invalid address, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr="test",
@@ -157,6 +157,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_002(self, setup_teardown):
         """proxy_addr missing, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 encode_addr_list=E_ADDR_LIST,
@@ -189,6 +196,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_003(self, setup_teardown):
         """proxy_addr empty, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr="",
@@ -222,6 +236,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_004(self, setup_teardown):
         """proxy_addr set to aaa, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr="aaa",
@@ -255,6 +276,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_proxy_addr_005(self, setup_teardown):
         """proxy_addr non-string, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=12345,
@@ -288,6 +316,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_001(self, setup_teardown):
         """encode_addr_list missing, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -322,6 +357,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_002(self, setup_teardown):
         """encode_addr_list empty, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -355,6 +397,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_003(self, setup_teardown):
         """encode_addr_list set to aaa, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -388,6 +437,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_004(self, setup_teardown):
         """encode_addr_list empty, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -421,6 +477,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_encode_addr_list_005(self, setup_teardown):
         """encode_addr_list non-list, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -454,6 +517,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_001(self, setup_teardown):
         """pd_addr_list missing, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -488,6 +558,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_002(self, setup_teardown):
         """pd_addr_list empty, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -521,6 +598,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_003(self, setup_teardown):
         """pd_addr_list set to aaa, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -554,6 +638,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_004(self, setup_teardown):
         """pd_addr_list invalid address, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -587,6 +678,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_pd_addr_list_005(self, setup_teardown):
         """pd_addr_list non-list, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -620,6 +718,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_model_name_001(self, setup_teardown):
         """model_name missing, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -654,6 +759,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_model_name_002(self, setup_teardown):
         """model_name empty, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -687,6 +799,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_model_name_003(self, setup_teardown):
         """model_name set to aaa, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -720,6 +839,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_proxy_model_name_004(self, setup_teardown):
         """model_name non-string, initialize Proxy, initialization fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -753,6 +879,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_prompt_prompt_001(self, setup_teardown):
         """prompt missing, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -785,6 +918,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_prompt_prompt_002(self, setup_teardown):
         """prompt empty, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -818,6 +958,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_prompt_prompt_003(self, setup_teardown):
         """prompt non-string, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -851,6 +998,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_multi_model_data_001(self, setup_teardown):
         """multi_model_data missing, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -917,6 +1071,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_multi_model_data_003(self, setup_teardown):
         """multi_model_data has non-image field, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -983,6 +1144,12 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_multi_model_data_005(self, setup_teardown):
         """multi_model_data not converted to np.array, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1079,6 +1246,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """max_tokens missing, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1114,6 +1288,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """max_tokens set to None, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1151,6 +1332,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """max_tokens set to 0, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1186,6 +1374,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """max_tokens set to 2.1, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1221,6 +1416,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """max_tokens set to aaa, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1258,6 +1460,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """max_tokens set to 20, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1291,6 +1500,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_001(self, setup_teardown):
         """top_p missing, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1324,6 +1540,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_002(self, setup_teardown):
         """top_p set to None, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1359,6 +1582,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_003(self, setup_teardown):
         """top_p set to 0, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1394,6 +1624,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_004(self, setup_teardown):
         """top_p set to -1, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1429,6 +1666,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_005(self, setup_teardown):
         """top_p set to 1, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1464,6 +1708,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_006(self, setup_teardown):
         """top_p set to 0.5, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1499,6 +1750,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_007(self, setup_teardown):
         """top_p set to 2, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1534,6 +1792,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_p_008(self, setup_teardown):
         """top_p set to aaa, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1569,6 +1834,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_001(self, setup_teardown):
         """top_k missing, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1602,6 +1874,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_002(self, setup_teardown):
         """top_k set to None, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1637,6 +1916,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_003(self, setup_teardown):
         """top_k set to 0, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1672,6 +1958,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_004(self, setup_teardown):
         """top_k set to -1, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1707,6 +2000,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_005(self, setup_teardown):
         """top_k set to 1, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1742,6 +2042,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_006(self, setup_teardown):
         """top_k set to 2.1, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1777,6 +2084,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_top_k_007(self, setup_teardown):
         """top_k set to aaa, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1812,6 +2126,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_001(self, setup_teardown):
         """seed missing, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1845,6 +2166,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_002(self, setup_teardown):
         """seed set to None, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1880,6 +2208,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_003(self, setup_teardown):
         """seed set to 0, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1915,6 +2250,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_004(self, setup_teardown):
         """seed set to -1, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1950,6 +2292,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_005(self, setup_teardown):
         """seed set to 1, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -1985,6 +2334,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_006(self, setup_teardown):
         """seed set to 2.1, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2020,6 +2376,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_seed_007(self, setup_teardown):
         """seed set to aaa, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2057,6 +2420,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """temperature missing, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2092,6 +2462,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """temperature set to None, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2129,6 +2506,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """temperature set to 0, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2164,6 +2548,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """temperature set to -1, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2199,6 +2590,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """temperature set to 1, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2234,6 +2632,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """temperature set to 0.5, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2269,6 +2674,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """temperature set to aaa, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2306,6 +2718,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """repetition_penalty missing, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2341,6 +2760,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """repetition_penalty set to None, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2378,6 +2804,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """repetition_penalty set to 0, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2415,6 +2848,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """repetition_penalty set to 1, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2452,6 +2892,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """repetition_penalty set to 1.5, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2489,6 +2936,13 @@ class TestEPDProxy:
         self, setup_teardown
     ):
         """repetition_penalty set to aaa, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2524,6 +2978,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_001(self, setup_teardown):
         """sampling_params missing, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2558,6 +3019,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_sampling_params_002(self, setup_teardown):
         """sampling_params empty, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2591,6 +3059,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_request_id_001(self, setup_teardown):
         """request_id missing, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2625,6 +3100,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_request_id_002(self, setup_teardown):
         """request_id empty, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2658,6 +3140,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_request_id_003(self, setup_teardown):
         """request_id non-string, call generate API, call fails, returns corresponding error message"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2691,6 +3180,13 @@ class TestEPDProxy:
     @pytest.mark.asyncio
     async def test_generate_request_id_004(self, setup_teardown):
         """duplicate request_id, call generate API, call succeeds"""
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             p = Proxy(
                 proxy_addr=PROXY_ADDR,
@@ -2814,6 +3310,13 @@ class TestEPDProxy:
             model_name=MODEL,
             router=CustomRouter,
         )
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             outputs = p.generate(
                 prompt={
@@ -2844,6 +3347,13 @@ class TestEPDProxy:
             pd_addr_list=PD_ADDR_LIST,
             model_name=MODEL,
         )
+        image = convert_image_mode(
+            Image.open(
+                Path(__file__).parent.parent.parent.parent / "tools" / "224.png"
+            ),
+            "RGB",
+        )
+        IMAGE_ARRAY = np.array(image)
         try:
             outputs = p.generate(
                 prompt={
