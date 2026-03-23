@@ -4,11 +4,11 @@ import uuid
 import os
 import numpy as np
 from .conftest import load_config
+import pytest_asyncio
 
 
 try:
     import pytest
-    import pytest_asyncio
     from PIL import Image
 except ImportError:
     pass
