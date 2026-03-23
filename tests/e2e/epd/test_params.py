@@ -4,11 +4,11 @@ import uuid
 import os
 import numpy as np
 from .conftest import load_config
-import pytest_asyncio
+import pytest
 
 
 try:
-    import pytest
+    import pytest_asyncio
     from PIL import Image
 except ImportError:
     pass
@@ -23,6 +23,7 @@ except (ImportError, ModuleNotFoundError):
 from ..nightly.multi_node.config.multi_node_epd_config import EnvManager
 
 
+pytest_asyncio = pytest.importorskip("pytest_asyncio")
 model_path = load_config().get("model_path")
 MODEL = os.path.join(model_path, "Qwen2.5-VL-7B-Instruct")
 PROMPT_TEMPLATE = (
